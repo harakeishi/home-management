@@ -124,9 +124,9 @@ export default {
           ]
         }
         this.loading = false
-      }).catch((error, response) => {
+      }).catch(error => {
+        console.log('--------')
         console.log(error)
-        console.log(response)
         this.loading = false
       })
     },
@@ -167,11 +167,13 @@ export default {
           console.log(2)
           this.pickerType = 'month'
           this.pickerFormat = 'yyyy-MM'
+          this.value2 = this.value2.slice(0, -3)
           break
         case '日':
           console.log(3)
           this.pickerType = 'date'
           this.pickerFormat = 'yyyy-MM-dd'
+          this.value2 = this.value2 + '-01'
           break
       }
     }
