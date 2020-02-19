@@ -40,6 +40,7 @@
       <tr>
         <td>
           <el-radio-group v-model="radio1">
+            <el-radio-button label="年"></el-radio-button>
             <el-radio-button label="月"></el-radio-button>
             <el-radio-button label="日"></el-radio-button>
           </el-radio-group>
@@ -162,18 +163,28 @@ export default {
       this.getPowerData(val)
     },
     radio1: function (val) {
+      var dObj = new Date()
+      var y = String(dObj.getFullYear())
+      var m = String(100 + dObj.getMonth() + 1).substr(1, 2)
+      var d = String(100 + dObj.getDate()).substr(1, 2)
       switch (val) {
+        case '年':
+          console.log(2)
+          this.pickerType = 'month'
+          this.pickerFormat = 'yyyy'
+          this.value2 = y
+          break
         case '月':
           console.log(2)
           this.pickerType = 'month'
           this.pickerFormat = 'yyyy-MM'
-          this.value2 = this.value2.slice(0, -3)
+          this.value2 = y + '-' + m
           break
         case '日':
           console.log(3)
           this.pickerType = 'date'
           this.pickerFormat = 'yyyy-MM-dd'
-          this.value2 = this.value2 + '-01'
+          this.value2 = y + '-' + m + '-' + d
           break
       }
     }
